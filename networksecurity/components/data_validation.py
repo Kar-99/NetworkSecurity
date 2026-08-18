@@ -1,4 +1,4 @@
-from networksecurity.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact
+from networksecurity.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact
 from networksecurity.entity.config_entity import DataValidationConfig
 from networksecurity.exception.exception import NetworkSecurityException 
 from networksecurity.logging.logger import logging 
@@ -6,7 +6,7 @@ from networksecurity.constant.training_pipeline import SCHEMA_FILE_PATH
 from scipy.stats import ks_2samp
 import pandas as pd
 import os,sys
-from networksecurity.utils.main_utils.utils import read_yaml_file,write_yaml_file
+from networksecurity.utils.main_utils.utils import read_yaml_file, write_yaml_file
 
 class DataValidation:
     def __init__(self,data_ingestion_artifact:DataIngestionArtifact,
@@ -77,16 +77,17 @@ class DataValidation:
             
             ## validate number of columns
 
-            status=self.validate_number_of_columns(dataframe=train_dataframe)
+            status = self.validate_number_of_columns(dataframe=train_dataframe)
             if not status:
-                error_message=f"Train dataframe does not contain all columns.\n"
+                error_message = f"Train dataframe does not contain all columns.\n"
             status = self.validate_number_of_columns(dataframe=test_dataframe)
             if not status:
-                error_message=f"Test dataframe does not contain all columns.\n"   
+                error_message = f"Test dataframe does not contain all columns.\n"   
 
             ## lets check datadrift
-            status=self.detect_dataset_drift(base_df=train_dataframe,current_df=test_dataframe)
-            dir_path=os.path.dirname(self.data_validation_config.valid_train_file_path)
+
+            status = self.detect_dataset_drift(base_df=train_dataframe,current_df=test_dataframe)
+            dir_path = os.path.dirname(self.data_validation_config.valid_train_file_path)
             os.makedirs(dir_path,exist_ok=True)
 
             train_dataframe.to_csv(
@@ -107,6 +108,7 @@ class DataValidation:
                 drift_report_file_path=self.data_validation_config.drift_report_file_path,
             )
             return data_validation_artifact
+            
         except Exception as e:
             raise NetworkSecurityException(e,sys)
 
