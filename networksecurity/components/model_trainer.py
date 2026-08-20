@@ -1,6 +1,7 @@
 import os
 import sys
 
+
 from networksecurity.exception.exception import NetworkSecurityException 
 from networksecurity.logging.logger import logging
 
@@ -24,6 +25,8 @@ from sklearn.ensemble import (
     RandomForestClassifier,
 )
 import mlflow
+import dagshub
+dagshub.init(repo_owner='Kar-99', repo_name='NetworkSecurity', mlflow=True)
 
 
 
@@ -107,6 +110,10 @@ class ModelTrainer:
 
         Network_Model = NetworkModel(preprocessor= preprocessor, model=best_model)
         save_object(self.model_trainer_config.trained_model_file_path, obj=NetworkModel)
+
+        save_object("final_model/model.pkl", best_model)
+
+
 
         ##model trainer artifact
         model_trainer_artifact = ModelTrainerArtifact(trained_model_file_path= self.model_trainer_config.trained_model_file_path,

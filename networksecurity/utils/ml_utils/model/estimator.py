@@ -16,9 +16,20 @@ class NetworkModel:
 
     def predict(self,x) :
         try:
+            print("A")
+            print(type(x))
+
             x_transform = self.preprocessor.transform(x)
+            print("B")
+            print(type(x_transform))
+
             y_hat = self.model.predict(x_transform)
+            print("C")
+            print(type(y_hat))
+
             return y_hat
-        except Exception as e:
-            raise NetworkSecurityException(e,sys)
+        except Exception:
+            import traceback
+            traceback.print_exc()
+            raise
         

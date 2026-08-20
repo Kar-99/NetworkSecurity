@@ -1,0 +1,6 @@
+[ 2026-08-20 11:34:20,194] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-08-20 11:34:20,221] 107 dagshub - INFO - Accessing as Kar-99
+[ 2026-08-20 11:34:21,238] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Kar-99/NetworkSecurity "HTTP/1.1 200 OK"
+[ 2026-08-20 11:34:22,241] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2026-08-20 11:34:22,241] 107 dagshub - INFO - Initialized MLflow to track repo "Kar-99/NetworkSecurity"
+[ 2026-08-20 11:34:22,241] 107 dagshub - INFO - Repository Kar-99/NetworkSecurity initialized!
